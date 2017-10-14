@@ -10,7 +10,7 @@ import { ShoppingItem } from '../../models/shopping-item/shopping-item.interface
 })
 export class AddShoppingPage {
   shoppingItem = {} as ShoppingItem;
-  shoppingItemRef$:FirebaseListObservable<ShoppingItem[]>;
+  shoppingItemRef$: FirebaseListObservable<ShoppingItem[]>;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private database: AngularFireDatabase) {
   	this.shoppingItemRef$ = this.database.list('shopping-list');
