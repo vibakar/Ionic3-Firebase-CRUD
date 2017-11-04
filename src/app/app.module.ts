@@ -8,6 +8,7 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
 
 import { MyApp } from './app.component';
 import { ShoppingService } from '../services/shopping.service';
+import { ToastService } from '../services/toast.service';
 import { FIREBASE_CREDENTIALS } from './firebase.credentials';
 
 @NgModule({
@@ -28,7 +29,8 @@ import { FIREBASE_CREDENTIALS } from './firebase.credentials';
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    ShoppingService
+    ShoppingService,
+    ToastService
   ]
 })
 export class AppModule {}

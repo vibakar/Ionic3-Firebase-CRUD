@@ -3,7 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 import { Item } from '../../models/item.model';
 import { ShoppingService } from '../../services/shopping.service';
-
+import { ToastService } from '../../services/toast.service';
 
 @IonicPage()
 @Component({
@@ -16,7 +16,7 @@ export class AddShoppingItemPage {
   	quantity: undefined,
   	price: undefined
   };
-  constructor(public navCtrl: NavController, public navParams: NavParams, private shoppingService: ShoppingService) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private shoppingService: ShoppingService, public toast: ToastService) {
   }																																														
 
   ionViewDidLoad() {
@@ -24,8 +24,12 @@ export class AddShoppingItemPage {
   }
 
   addItem(item: Item){
-  	this.shoppingService.addShoppingItem(item);
-  	this.navCtrl.setRoot('HomePage');
+  	this.shoppingService.addShoppingItem(item)
+                        .then((ref)=>{
+                          this.navCtrl.setRoot('HomePage');
+                          this.toast.show(`${item.name} added!!`);
+                        });
+  	
   }
 
 }

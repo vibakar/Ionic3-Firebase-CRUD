@@ -14,8 +14,10 @@ export class ShoppingService {
 	}
 
 	addShoppingItem(item: Item){
-	    this.shoppingListRef.push(item).then(ref=>{
-			console.log(ref.key)
-		});
+	    return this.shoppingListRef.push(item);
+	}
+
+	editShoppingItem(item: Item){
+		return this.shoppingListRef.update(item.key, item);
 	}
 }
