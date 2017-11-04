@@ -27,4 +27,5 @@
 		<ion-input type="number" [(ngModel)]="item.price"></ion-input>
 	</ion-item>
 	<button ion-button block (click)="editItem(item)">Edit</button>
+	<button ion-button block clear (click)="deleteItem(item)" color="danger">Delete</button>
 </ion-content>

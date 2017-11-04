@@ -20,4 +20,8 @@ export class ShoppingService {
 	editShoppingItem(item: Item){
 		return this.shoppingListRef.update(item.key, item);
 	}
+
+	deleteShoppingItem(item: Item){
+		return this.shoppingListRef.remove(item.key);
+	}
 }

@@ -26,4 +26,12 @@ export class EditShoppingItemPage {
   							this.toast.show(`${item.name} updated!!`);
   						});
   }
+
+  deleteItem(item: Item){
+    this.shoppingService.deleteShoppingItem(item)
+                        .then(()=>{
+                          this.navCtrl.setRoot('HomePage');
+                          this.toast.show(`${item.name} deleted!!`);
+                        })
+  }
 }
