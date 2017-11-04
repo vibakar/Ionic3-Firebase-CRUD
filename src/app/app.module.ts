@@ -7,16 +7,12 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 
 import { MyApp } from './app.component';
-import { ShoppingListPage } from '../pages/shopping-list/shopping-list';
-import { AddShoppingPage } from '../pages/add-shopping/add-shopping';
-
+import { ShoppingService } from '../services/shopping.service';
 import { FIREBASE_CREDENTIALS } from './firebase.credentials';
 
 @NgModule({
   declarations: [
-    MyApp,
-    ShoppingListPage,
-    AddShoppingPage
+    MyApp
   ],
   imports: [
     BrowserModule,
@@ -26,14 +22,13 @@ import { FIREBASE_CREDENTIALS } from './firebase.credentials';
   ],
   bootstrap: [IonicApp],
   entryComponents: [
-    MyApp,
-    ShoppingListPage,
-    AddShoppingPage
+    MyApp
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    ShoppingService
   ]
 })
 export class AppModule {}

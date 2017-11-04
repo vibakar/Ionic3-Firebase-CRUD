@@ -1,26 +1,27 @@
 <!--
-  Generated template for the ShoppingListPage page.
+  Generated template for the HomePage page.
 
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
 -->
 <ion-header>
+
   <ion-navbar color="primary">
-    <ion-title>Shopping List</ion-title>
+    <ion-title>Shopping Items</ion-title>
     <ion-buttons end>
-    	<button ion-button icon-only (click)="goToAddShopping()">
+    	<button navPush="AddShoppingItemPage" ion-button>
     		<ion-icon name="add"></ion-icon>
     	</button>
     </ion-buttons>
   </ion-navbar>
+
 </ion-header>
 
 
 <ion-content padding>
   <ion-list>
-    <ion-item *ngFor="let item of shoppingListRef$ | async">
-      <h2>Item Name : {{ item.itemName }}</h2>
-      <h3>Quantity : {{ item.quantity }}</h3>
+    <ion-item *ngFor="let item of shoppingList$ | async">
+      {{item.name}}
     </ion-item>
   </ion-list>
 </ion-content>
