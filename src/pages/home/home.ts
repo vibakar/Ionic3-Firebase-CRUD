@@ -13,15 +13,26 @@ import { Item } from '../../models/item.model';
 export class HomePage {
   private shoppingList$: Observable<Item[]>;
   constructor(public navCtrl: NavController, public navParams: NavParams, public shoppingService: ShoppingService) {
-  	this.shoppingList$ = this.shoppingService
-  						.getShoppingList()
-						.snapshotChanges()
-						.map(changes => {
-							return changes.map(c=>({
-								key: c.payload.key,
-								...c.payload.val()
-							}))
-						})
+  	this.getShoppingList();
+  }
+
+  getShoppingList(){
+   this.shoppingList$ = this.shoppingService
+              .getShoppingList()
+              .snapshotChanges()
+              .map(changes => {
+                return changes.map(c=>({
+                  key: c.payload.key,
+                  ...c.payload.val()
+                }))
+              });
+  }
+
+  doRefresh(refresher) {
+  	this.getShoppingList();
+    setTimeout(() => {
+      refresher.complete();
+    }, 2000);
   }
 
 }

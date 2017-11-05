@@ -8,6 +8,14 @@
 
   <ion-navbar color="primary">
     <ion-title>{{ item?.name }}</ion-title>
+    <ion-buttons end>
+    	<button ion-button (click)="enableEdit()">
+    		<ion-icon name="create"></ion-icon>
+    	</button>
+    	<button ion-button (click)="confirmDelete(item)">
+    		<ion-icon name="ios-trash"></ion-icon>
+    	</button>
+    </ion-buttons>
   </ion-navbar>
 
 </ion-header>
@@ -16,16 +24,15 @@
 <ion-content padding>
 	<ion-item>
 		<ion-label floating>Name</ion-label>
-		<ion-input [(ngModel)]="item.name"></ion-input>
+		<ion-input [(ngModel)]="item.name" [disabled]="disable"></ion-input>
 	</ion-item>
 	<ion-item>
 		<ion-label floating>Quantity</ion-label>
-		<ion-input type="number" [(ngModel)]="item.quantity"></ion-input>
+		<ion-input type="number" [(ngModel)]="item.quantity" [disabled]="disable"></ion-input>
 	</ion-item>
 	<ion-item>
 		<ion-label floating>Price</ion-label>
-		<ion-input type="number" [(ngModel)]="item.price"></ion-input>
+		<ion-input type="number" [(ngModel)]="item.price" [disabled]="disable"></ion-input>
 	</ion-item>
-	<button ion-button block (click)="editItem(item)">Edit</button>
-	<button ion-button block clear (click)="deleteItem(item)" color="danger">Delete</button>
+	<button ion-button block *ngIf="disable=='false'" (click)="editItem(item)">Save</button>
 </ion-content>

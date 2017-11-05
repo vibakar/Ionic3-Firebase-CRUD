@@ -19,15 +19,12 @@ export class AddShoppingItemPage {
   constructor(public navCtrl: NavController, public navParams: NavParams, private shoppingService: ShoppingService, public toast: ToastService) {
   }																																														
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad AddShoppingItemPage');
-  }
-
   addItem(item: Item){
+    this.toast.showLoading('Adding..');
   	this.shoppingService.addShoppingItem(item)
                         .then((ref)=>{
+                          this.toast.showToast(`${item.name} added!!`);
                           this.navCtrl.setRoot('HomePage');
-                          this.toast.show(`${item.name} added!!`);
                         });
   	
   }

@@ -12,6 +12,8 @@ import { ToastService } from '../../services/toast.service';
 })
 export class EditShoppingItemPage {
   item: Item;
+  selectedItem: Item;
+  disable:string = "true";
   constructor(public navCtrl: NavController, public navParams: NavParams, public shoppingService: ShoppingService, public toast: ToastService) {
   }
 
@@ -20,18 +22,43 @@ export class EditShoppingItemPage {
   }
 
   editItem(item: Item){
+    this.toast.showLoading('Saving..');
   	this.shoppingService.editShoppingItem(item)
   						.then(()=>{
+                this.toast.showToast(`${item.name} updated!!`);
   							this.navCtrl.setRoot('HomePage');
-  							this.toast.show(`${item.name} updated!!`);
   						});
   }
 
-  deleteItem(item: Item){
+  confirmDelete(item: Item){
+    this.selectedItem = item;
+    this.toast.showConfirm('Warning', `Are you sure to delete ${item.name}?`, this.userResponse);
+  }
+
+  deleteItem(){
+    let item: Item = this.selectedItem;
     this.shoppingService.deleteShoppingItem(item)
                         .then(()=>{
-                          this.navCtrl.setRoot('HomePage');
-                          this.toast.show(`${item.name} deleted!!`);
+                              this.toast.showToast(`${item.name} deleted!!`);
+                              this.navCtrl.setRoot('HomePage');
                         })
   }
+
+  userResponse = (response:string)=>{
+    if(response == 'yes'){
+      this.toast.showLoading('Deleting..');
+      this.deleteItem();
+    }
+  }
+
+  enableEdit(){
+    if(this.disable == "true"){
+      this.disable = "false";
+    }else {
+      this.disable = "true";
+    }
+  }
+
+
+
 }
