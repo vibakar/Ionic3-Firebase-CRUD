@@ -24,7 +24,7 @@ export class AddShoppingItemPage {
   	this.shoppingService.addShoppingItem(item)
                         .then((ref)=>{
                           this.toast.showToast(`${item.name} added!!`);
-                          this.navCtrl.setRoot('HomePage');
+                          this.navCtrl.setRoot('ListShoppingItemPage');
                         });
   	
   }

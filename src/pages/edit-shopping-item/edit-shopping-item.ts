@@ -26,7 +26,7 @@ export class EditShoppingItemPage {
   	this.shoppingService.editShoppingItem(item)
   						.then(()=>{
                 this.toast.showToast(`${item.name} updated!!`);
-  							this.navCtrl.setRoot('HomePage');
+  							this.navCtrl.setRoot('ListShoppingItemPage');
   						});
   }
 
@@ -40,7 +40,7 @@ export class EditShoppingItemPage {
     this.shoppingService.deleteShoppingItem(item)
                         .then(()=>{
                               this.toast.showToast(`${item.name} deleted!!`);
-                              this.navCtrl.setRoot('HomePage');
+                              this.navCtrl.setRoot('ListShoppingItemPage');
                         })
   }
 

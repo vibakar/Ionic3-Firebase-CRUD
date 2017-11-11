@@ -1,1 +1,15 @@
-<ion-nav [root]="rootPage"></ion-nav>
+<ion-menu [content]="content" menu-close>
+  <ion-content>
+  	<div class="profile">
+  		<img src="{{profilePicUrl}}">
+  		<h4>{{displayName}}</h4>
+  	</div>
+    <ion-list>
+      <button ion-item (click)="signOut()" menuClose>
+       Logout
+      </button>
+    </ion-list>
+  </ion-content>
+</ion-menu>
+
+<ion-nav [root]="rootPage" #content></ion-nav>
